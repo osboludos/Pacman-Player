@@ -61,30 +61,14 @@ public class DFSPacManPlayer implements PacManPlayer, StateEvaluator {
 
       State last = stateList.get(stateList.size() - 1);
 
-      scores.setCount(m, bestMoveFromState(last, 2));
+      //scores.setCount(m, bestMoveFromState(last, 2));
     }
 
     return scores.argmax();
   }
 
 
-  private double bestMoveFromState(State s, int depth){
 
-    List<Move> legalMoves = Game.getLegalPacManMoves(s);
-    double totalScore = 0;
-
-    for (Move m : legalMoves) {
-
-      List<State> stateList = Game.getProjectedStates(s, m);
-
-      State last = stateList.get(stateList.size() - 1);
-      if (depth > 0){
-        totalScore += bestMoveFromState(last, depth - 1);
-      }
-        totalScore += evaluateState(last);
-    }
-    return totalScore / legalMoves.size();
-  }
 
   /**
    * Computes an estimate of the value of the State.
