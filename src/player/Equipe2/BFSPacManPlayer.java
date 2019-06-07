@@ -1,4 +1,4 @@
-package player;
+package player.Equipe2;
 
 import pacman.*;
 import util.Counter;
@@ -6,6 +6,10 @@ import util.Counter;
 import java.util.List;
 
 public class BFSPacManPlayer implements PacManPlayer, StateEvaluator {
+
+
+    Move m_lastMove = null;
+
     @Override
     public Move chooseMove(Game game) {
 
@@ -24,11 +28,19 @@ public class BFSPacManPlayer implements PacManPlayer, StateEvaluator {
             State last = stateList.get(stateList.size() - 1);
 
 
-            scores.setCount(m, bestMoveFromState(last, 4));
+            double score = bestMoveFromState(last, 4);
+
+            if (m.getOpposite().equals(m_lastMove)){
+                score -= 100;
+            }
+
+            scores.setCount(m, score);
 
         }
 
-        return scores.argmax();
+        m_lastMove = scores.argmax();
+
+        return m_lastMove;
     }
 
     private double bestMoveFromState(State s, int depth){

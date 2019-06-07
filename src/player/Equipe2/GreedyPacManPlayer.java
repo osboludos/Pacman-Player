@@ -1,4 +1,4 @@
-package player;
+package player.Equipe2;
 
 import pacman.*;
 import util.Counter;

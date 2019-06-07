@@ -23,29 +23,6 @@ public class DFSPacManPlayer implements PacManPlayer, StateEvaluator {
     if (firstFrame){
       game.getGhostPlayers().removeAll(game.getGhostPlayers());
       game.getCurrentState().getGhostLocations().removeAll(game.getCurrentState().getGhostLocations());
-
-      fourSquares = new ArrayList<>();
-      fourSquares.add(new ArrayList<>());
-      fourSquares.add(new ArrayList<>());
-      fourSquares.add(new ArrayList<>());
-      fourSquares.add(new ArrayList<>());
-      for(Location l : game.getAllLocationsCopy()){
-        if (l.getX() < 13 && l.getY() > 14){
-          fourSquares.get(0).add(l);
-        }
-        else if (l.getX() >= 13 && l.getY() > 14){
-          fourSquares.get(1).add(l);
-        }
-        else if (l.getX() < 13 && l.getY() < 14){
-          fourSquares.get(2).add(l);
-        }
-        else if (l.getX() >= 13 && l.getY() < 14){
-          fourSquares.get(3).add(l);
-        }
-        else {
-          System.out.println("Tinha uma location fora de tudo!" + l);
-        }
-      }
       firstFrame = false;
     }
 
